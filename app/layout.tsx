@@ -35,6 +35,11 @@ const workSans = localFont({
       style: "normal",
     },
     {
+      path: "./fonts/WorkSans-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
       path: "./fonts/WorkSans-Thin.ttf",
       weight: "200",
       style: "normal",
@@ -53,8 +58,8 @@ export const metadata: Metadata = {
   description: "Let's Boost Your Startup",
   icons: {
     icon: "/energize.ico",
-    shortcut:"/energize.ico",
-    apple:"/energize.ico",
+    shortcut: "/energize.ico",
+    apple: "/energize.ico",
   },
 };
 
