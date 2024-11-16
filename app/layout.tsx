@@ -51,6 +51,11 @@ const workSans = localFont({
 export const metadata: Metadata = {
   title: "Energize",
   description: "Let's Boost Your Startup",
+  icons: {
+    icon: "/energize.ico",
+    shortcut:"/energize.ico",
+    apple:"/energize.ico",
+  },
 };
 
 export default function RootLayout({
