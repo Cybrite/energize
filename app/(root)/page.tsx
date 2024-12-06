@@ -1,6 +1,6 @@
 import React from "react";
 import SearchForm from "../../components/SearchForm";
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartUpCardType } from "@/components/StartupCard";
 import { client } from "@/sanity/lib/client";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
@@ -13,6 +13,7 @@ const page = async ({
 
   const posts = await client.fetch(STARTUPS_QUERY);
 
+  // console.log(JSON.stringify(posts, null, 2));
 
   return (
     <>
@@ -34,8 +35,8 @@ const page = async ({
 
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            posts.map((post: StartUpCardType, index: number) => (
-              <StartupCard key={post?._id} post={post} />
+            posts.map((post) => (
+              <StartupCard key={post._id} post={post as StartUpCardType} />
             ))
           ) : (
             <p className="no-result">No startups found</p>
