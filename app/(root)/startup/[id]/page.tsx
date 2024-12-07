@@ -6,10 +6,9 @@ import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
-
 import View from "@/components/View";
 
-
+// const md = markdownit();
 
 export const experimental_ppr = true;
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {

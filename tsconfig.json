@@ -18,11 +18,8 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/sanity/lib/*": ["sanity/lib/*"],
-      "@/auth": ["path/to/your/auth/file"]
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

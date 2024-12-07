@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm run prebuild && npm install next@canary && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "predev": "npm run typegen",
@@ -20,7 +20,6 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.65.1",
-    "@sentry/nextjs": "^8.42.0",
     "@tailwindcss/typography": "^0.5.15",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -33,12 +32,12 @@
     "sanity": "^3.65.1",
     "sanity-plugin-markdown": "^5.0.0",
     "server-only": "^0.0.1",
+    "shadcn": "^2.1.6",
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
