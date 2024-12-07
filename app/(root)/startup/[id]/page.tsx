@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/utils";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
@@ -18,12 +18,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!post) return notFound();
 
 
-  const imageProps = {
-    src: post.image,
-    width: 1000,
-    height: 1000,
-    alt: post.title,
-  };
 
   return (
     <>
@@ -34,7 +28,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </section>
 
       <section className="section_container">
-        <Image {...imageProps} className="w-full h-auto rounded-xl" />
+        <img src={post?.image} alt='image'  className="w-full h-auto rounded-xl" />
 
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
@@ -42,10 +36,8 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
               href={`/user/${post.author?._id}`}
               className="flex items-center gap-2 mb-3"
             >
-              <Image
+              <img
                 src={post.author?.image}
-                width={64}
-                height={64}
                 alt={post.author?.name}
                 className="rounded-full drop-shadow-lg"
               />
