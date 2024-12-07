@@ -18,7 +18,6 @@ export const STARTUPS_QUERY =
   }
 }`);
 
-
 export const STARTUP_BY_ID_QUERY = defineQuery(`
   *[_type == 'startup' && _id == $id][0]{
   _id,
@@ -34,6 +33,13 @@ export const STARTUP_BY_ID_QUERY = defineQuery(`
     _id,
     name,
     image,
+    username,
     bio
   }
-}`)
+}`);
+
+export const VIEW_BY_ID_QUERY = defineQuery(`
+  *[_type == 'startup' && _id == $id][0]{
+  _id,
+  views,
+}`);

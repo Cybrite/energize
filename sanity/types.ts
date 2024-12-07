@@ -210,7 +210,7 @@ export type STARTUPS_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: STARTUP_BY_ID_QUERY
-// Query: *[_type == 'startup' && _id == $id][0]{  _id,  _createdAt,  title,  slug,  pitch,  image,  views,  description,  category,  author -> {    _id,    name,    image,    bio  }}
+// Query: *[_type == 'startup' && _id == $id][0]{  _id,  _createdAt,  title,  slug,  pitch,  image,  views,  description,  category,  author -> {    _id,    name,    image,    username,    bio  }}
 export type STARTUP_BY_ID_QUERYResult = {
   _id: string;
   _createdAt: string;
@@ -225,8 +225,15 @@ export type STARTUP_BY_ID_QUERYResult = {
     _id: string;
     name: string | null;
     image: string | null;
+    username: string | null;
     bio: string | null;
   } | null;
+} | null;
+// Variable: VIEW_BY_ID_QUERY
+// Query: *[_type == 'startup' && _id == $id][0]{  _id,  views,}
+export type VIEW_BY_ID_QUERYResult = {
+  _id: string;
+  views: number | null;
 } | null;
 
 // Query TypeMap
@@ -234,6 +241,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == 'startup' && defined(slug.current) && !defined($search) || title match $search || category match $search || author->name match $search] | order(_createdAt desc) {\n  _id,\n  _createdAt,\n  title,\n  pitch,\n  image,\n  views,\n  description,\n  category,\n  author -> {\n    _id,\n    name,\n    image,\n    bio\n  }\n}": STARTUPS_QUERYResult;
-    "\n  *[_type == 'startup' && _id == $id][0]{\n  _id,\n  _createdAt,\n  title,\n  slug,\n  pitch,\n  image,\n  views,\n  description,\n  category,\n  author -> {\n    _id,\n    name,\n    image,\n    bio\n  }\n}": STARTUP_BY_ID_QUERYResult;
+    "\n  *[_type == 'startup' && _id == $id][0]{\n  _id,\n  _createdAt,\n  title,\n  slug,\n  pitch,\n  image,\n  views,\n  description,\n  category,\n  author -> {\n    _id,\n    name,\n    image,\n    username,\n    bio\n  }\n}": STARTUP_BY_ID_QUERYResult;
+    "\n  *[_type == 'startup' && _id == $id][0]{\n  _id,\n  views,\n}": VIEW_BY_ID_QUERYResult;
   }
 }
