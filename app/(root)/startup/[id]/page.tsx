@@ -45,10 +45,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
               className="flex items-center gap-2 mb-3"
             >
               <Image
-                src={post.author?.image}
+                src={post.author?.image ?? "/blahblah.jpg"} 
                 width={64}
                 height={64}
-                alt={post.author?.name}
+                alt={post.author?.name ?? "User"}
                 className="rounded-full drop-shadow-lg"
               />
               <div>
