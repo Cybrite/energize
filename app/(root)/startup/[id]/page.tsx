@@ -7,7 +7,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
+import markdownit from "markdown-it";
 
+const md = markdownit();
 
 export const experimental_ppr = true;
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -16,7 +18,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   if (!post) return notFound();
 
-
+  const parsedContent = md.render(post?.pitch || "");
 
   const imageProps = {
     src: post.image,
@@ -58,6 +60,15 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <p className="category-tag">{post.category}</p>
           </div>
 
+          <h3 className="text-30-bold">Pitch Details</h3>
+          {parsedContent ? (
+            <article
+              className="prose max-w-4xl font-work-sans break-all"
+              dangerouslySetInnerHTML={{ __html: parsedContent }}
+            />
+          ) : (
+            <p className="no-result">No details provided</p>
+          )}
         </div>
 
         <hr className="divider" />
