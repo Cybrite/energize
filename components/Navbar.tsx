@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { auth, signOut, signIn } from "@/auth";
-import { BadgePlus, LogIn, LogOut } from "lucide-react";
+import { LogInIcon, LogOutIcon } from "lucide-react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 
 const Navbar = async () => {
@@ -19,8 +19,8 @@ const Navbar = async () => {
           {session && session?.user ? (
             <>
               <Link href="/startup/create">
-                <span className="text-black">
-                  <BadgePlus className="size-7 text-pink-500 " />
+                <span className="text-black border hover:bg-pink-200 px-5 py-2 rounded-md transition-all duration-1000">
+                  Create
                 </span>
               </Link>
               <form
@@ -31,7 +31,7 @@ const Navbar = async () => {
               >
                 <button type="submit" className="text-black">
                   <span>
-                    <LogOut className="size-7 text-red-800" />
+                    <LogOutIcon className="size-6 text-red-800" />
                   </span>
                 </button>
               </form>
@@ -54,7 +54,7 @@ const Navbar = async () => {
             >
               <button type="submit" className="text-black">
                 <span>
-                  <LogIn className="size-7 text-green-600 " />
+                  <LogInIcon className="size-6 text-green-600 " />
                 </span>
               </button>
             </form>
