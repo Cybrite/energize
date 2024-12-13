@@ -332,7 +332,7 @@ export type PLAYLIST_BY_SLUG_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == 'startup' && defined(slug.current) && !defined($search) || title match $search || category match $search || author->name match $search] | order(_createdAt desc) {\n  _id,\n  _createdAt,\n  title,\n  pitch,\n  image,\n  views,\n  description,\n  category,\n  author -> {\n    _id,\n    name,\n    image,\n    bio\n  }\n}": STARTUPS_QUERYResult;
+    "\n  *[_type == 'startup' && defined(slug.current) && !defined($search) || title match $search || category match $search || author->name match $search] | order(_createdAt desc) {\n  _id,\n  _createdAt,\n  title,\n  pitch,\n  image,\n  views,\n  description,\n  category,\n  author -> {\n    _id,\n    name,\n    image,\n    bio\n  }\n}": STARTUPS_QUERYResult;
     "\n  *[_type == 'startup' && _id == $id][0]{\n  _id,\n  _createdAt,\n  title,\n  slug,\n  pitch,\n  image,\n  views,\n  description,\n  category,\n  author -> {\n    _id,\n    name,\n    image,\n    username,\n    bio\n  }\n}": STARTUP_BY_ID_QUERYResult;
     "\n  *[_type == 'startup' && _id == $id][0]{\n  _id,\n  views,\n}": VIEW_BY_ID_QUERYResult;
     "\n  *[_type == \"author\" && id == $id][0]{\n     _id,\n     id,\n     name,\n     username,\n     email,\n     image,\n     bio\n  }\n  ": AUTHOR_BY_GITHUB_ID_QUERYResult;

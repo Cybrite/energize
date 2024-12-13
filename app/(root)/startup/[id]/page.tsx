@@ -18,22 +18,23 @@ const md = markdownit();
 export const experimental_ppr = true;
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
-  const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
 
-  const { select: ourPicks } = await client.fetch(PLAYLIST_BY_SLUG_QUERY, {
-    slug: "our-picks",
-  });
+  const [post, { select: ourPicks }] = await Promise.all([
+    client.fetch(STARTUP_BY_ID_QUERY, { id }),
+    client.fetch(PLAYLIST_BY_SLUG_QUERY, {
+      slug: "our-picks",
+    }),
+  ]);
+
+  // const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
+
+  // const { select: ourPicks } = await client.fetch(PLAYLIST_BY_SLUG_QUERY, {
+  //   slug: "our-picks",
+  // });
 
   if (!post) return notFound();
 
   const parsedContent = md.render(post?.pitch || "");
-
-  const imageProps = {
-    src: post.image,
-    width: 1000,
-    height: 1000,
-    alt: post.title,
-  };
 
   return (
     <>
@@ -44,7 +45,13 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </section>
 
       <section className="section_container">
-        <Image {...imageProps} className="w-full h-auto rounded-xl" />
+        <Image
+          src={post?.image ?? "image.jpg"}
+          height={1000}
+          width={1000}
+          alt={post?.title ?? ""}
+          className="w-full h-auto rounded-xl"
+        />
 
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
