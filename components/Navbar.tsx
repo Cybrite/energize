@@ -2,6 +2,8 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { auth, signOut, signIn } from "@/auth";
+import { BadgePlus, LogIn, LogOut } from "lucide-react";
+import { Avatar, AvatarImage } from "./ui/avatar";
 
 const Navbar = async () => {
   const session = await auth();
@@ -13,11 +15,13 @@ const Navbar = async () => {
           <Image src="/energize.jpeg" alt="logo" width={50} height={50} />
         </Link>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 align-middle">
           {session && session?.user ? (
             <>
               <Link href="/startup/create">
-                <span className="text-black">Create</span>
+                <span className="text-black">
+                  <BadgePlus className="size-7 text-pink-500 " />
+                </span>
               </Link>
               <form
                 action={async () => {
@@ -26,12 +30,19 @@ const Navbar = async () => {
                 }}
               >
                 <button type="submit" className="text-black">
-                  Logout
+                  <span>
+                    <LogOut className="size-7 text-red-800" />
+                  </span>
                 </button>
               </form>
 
               <Link href={`/user/${session.id}`}>
-                <span className="text-black">{session?.user.name}</span>
+                <Avatar className="size-10">
+                  <AvatarImage
+                    src={session?.user?.image}
+                    alt={session?.user?.name}
+                  />
+                </Avatar>
               </Link>
             </>
           ) : (
@@ -42,7 +53,9 @@ const Navbar = async () => {
               }}
             >
               <button type="submit" className="text-black">
-                Login
+                <span>
+                  <LogIn className="size-7 text-green-600 " />
+                </span>
               </button>
             </form>
           )}
