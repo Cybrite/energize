@@ -71,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en"> 
       <body className={`${workSans.variable} antialiased`}>
         {children}
         <Toaster />
